@@ -19,143 +19,143 @@ view: flattened_documentrules {
   
   
   dimension: _dbt_processed_at { 
-    type: TIMESTAMP
+    type: date
     description: "_dbt_processed_at"
     sql: ${TABLE}._dbt_processed_at ;; }
   dimension: _id { 
-    type: STRING
+    type: string
     description: "_id"
     sql: ${TABLE}._id ;; }
   dimension: _source_json { 
-    type: STRING
+    type: string
     description: "_source_json"
     sql: ${TABLE}._source_json ;; }
   dimension: contractTerms_json { 
-    type: JSON
+    type: string
     description: "contractTerms_json"
     sql: ${TABLE}.contractTerms_json ;; }
   dimension: created_by { 
-    type: STRING
+    type: string
     description: "created_by"
     sql: ${TABLE}.created_by ;; }
   dimension: created_on { 
-    type: TIMESTAMP
+    type: date
     description: "created_on"
     sql: ${TABLE}.created_on ;; }
   dimension: document_link_info { 
-    type: STRING
+    type: string
     description: "document_link_info"
     sql: ${TABLE}.document_link_info ;; }
   dimension: document_link_info.hierarchy { 
-    type: STRING
+    type: string
     description: "document_link_info.hierarchy"
     sql: ${TABLE}.document_link_info.hierarchy ;; }
   dimension: document_link_info.raw_json { 
-    type: STRING
+    type: string
     description: "document_link_info.raw_json"
     sql: ${TABLE}.document_link_info.raw_json ;; }
   dimension: document_link_info.rfx_round_number { 
-    type: STRING
+    type: string
     description: "document_link_info.rfx_round_number"
     sql: ${TABLE}.document_link_info.rfx_round_number ;; }
   dimension: document_link_info.root_id { 
-    type: STRING
+    type: string
     description: "document_link_info.root_id"
     sql: ${TABLE}.document_link_info.root_id ;; }
   dimension: document_link_info.source_id { 
-    type: STRING
+    type: string
     description: "document_link_info.source_id"
     sql: ${TABLE}.document_link_info.source_id ;; }
   dimension: document_status { 
-    type: STRING
+    type: string
     description: "document_status"
     sql: ${TABLE}.document_status ;; }
   dimension: document_status.name { 
-    type: STRING
+    type: string
     description: "document_status.name"
     sql: ${TABLE}.document_status.name ;; }
   dimension: document_status.raw_json { 
-    type: STRING
+    type: string
     description: "document_status.raw_json"
     sql: ${TABLE}.document_status.raw_json ;; }
   dimension: document_status.status_code { 
-    type: STRING
+    type: string
     description: "document_status.status_code"
     sql: ${TABLE}.document_status.status_code ;; }
   dimension: document_status.status_name { 
-    type: STRING
+    type: string
     description: "document_status.status_name"
     sql: ${TABLE}.document_status.status_name ;; }
   dimension: guidelines_json { 
-    type: JSON
+    type: string
     description: "guidelines_json"
     sql: ${TABLE}.guidelines_json ;; }
   dimension: is_deleted { 
-    type: BOOL
+    type: yesno
     description: "is_deleted"
     sql: ${TABLE}.is_deleted ;; }
   dimension: is_published { 
-    type: BOOL
+    type: yesno
     description: "is_published"
     sql: ${TABLE}.is_published ;; }
   dimension: is_silent_withdrawn { 
-    type: BOOL
+    type: yesno
     description: "is_silent_withdrawn"
     sql: ${TABLE}.is_silent_withdrawn ;; }
   dimension: is_withdrawn { 
-    type: BOOL
+    type: yesno
     description: "is_withdrawn"
     sql: ${TABLE}.is_withdrawn ;; }
   dimension: pricesheets_json { 
-    type: JSON
+    type: string
     description: "pricesheets_json"
     sql: ${TABLE}.pricesheets_json ;; }
   dimension: questionnaires_json { 
-    type: JSON
+    type: string
     description: "questionnaires_json"
     sql: ${TABLE}.questionnaires_json ;; }
   dimension: rps_scan_details { 
-    type: STRING
+    type: string
     description: "rps_scan_details"
     sql: ${TABLE}.rps_scan_details ;; }
   dimension: rps_scan_details.is_scanned { 
-    type: STRING
+    type: string
     description: "rps_scan_details.is_scanned"
     sql: ${TABLE}.rps_scan_details.is_scanned ;; }
   dimension: rps_scan_details.raw_json { 
-    type: STRING
+    type: string
     description: "rps_scan_details.raw_json"
     sql: ${TABLE}.rps_scan_details.raw_json ;; }
   dimension: rps_scan_details.rps_file_id { 
-    type: STRING
+    type: string
     description: "rps_scan_details.rps_file_id"
     sql: ${TABLE}.rps_scan_details.rps_file_id ;; }
   dimension: rps_scan_details.rps_file_name { 
-    type: STRING
+    type: string
     description: "rps_scan_details.rps_file_name"
     sql: ${TABLE}.rps_scan_details.rps_file_name ;; }
   dimension: rps_scan_details.scan_supplier_count { 
-    type: STRING
+    type: string
     description: "rps_scan_details.scan_supplier_count"
     sql: ${TABLE}.rps_scan_details.scan_supplier_count ;; }
   dimension: suppliers { 
-    type: STRING
+    type: string
     description: "suppliers"
     sql: ${TABLE}.suppliers ;; }
   dimension: suppliers.is_active { 
-    type: STRING
+    type: string
     description: "suppliers.is_active"
     sql: ${TABLE}.suppliers.is_active ;; }
   dimension: suppliers.raw_json { 
-    type: STRING
+    type: string
     description: "suppliers.raw_json"
     sql: ${TABLE}.suppliers.raw_json ;; }
   dimension: suppliers.supplier_id { 
-    type: STRING
+    type: string
     description: "suppliers.supplier_id"
     sql: ${TABLE}.suppliers.supplier_id ;; }
   dimension: suppliers.supplier_name { 
-    type: STRING
+    type: string
     description: "suppliers.supplier_name"
     sql: ${TABLE}.suppliers.supplier_name ;; }
   
