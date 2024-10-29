@@ -11,6 +11,11 @@ view: documentrules {
     type: string
     sql: ${TABLE}.source_data ;;
   }
+  dimension: root_id {
+    description: "json value example"
+    type: string
+    sql: JSON_VALUE(${source_data}, '$.root_id')  ;;
+  }
   dimension_group: timestamp {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
