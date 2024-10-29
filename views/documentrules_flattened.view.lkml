@@ -1,57 +1,5 @@
 # Un-hide and use this explore, or copy the joins into another explore, to get all the fully nested relationships from this view
-explore: documentrules_flattened {
-  hidden: yes
-    join: documentrules_flattened__suppliers {
-      view_label: "Documentrules Flattened: Suppliers"
-      sql: LEFT JOIN UNNEST(${documentrules_flattened.suppliers}) as documentrules_flattened__suppliers ;;
-      relationship: one_to_many
-    }
-    join: documentrules_flattened__guidelines {
-      view_label: "Documentrules Flattened: Guidelines"
-      sql: LEFT JOIN UNNEST(${documentrules_flattened.guidelines}) as documentrules_flattened__guidelines ;;
-      relationship: one_to_many
-    }
-    join: documentrules_flattened__pricesheets {
-      view_label: "Documentrules Flattened: Pricesheets"
-      sql: LEFT JOIN UNNEST(${documentrules_flattened.pricesheets}) as documentrules_flattened__pricesheets ;;
-      relationship: one_to_many
-    }
-    join: documentrules_flattened__contract_terms {
-      view_label: "Documentrules Flattened: Contractterms"
-      sql: LEFT JOIN UNNEST(${documentrules_flattened.contract_terms}) as documentrules_flattened__contract_terms ;;
-      relationship: one_to_many
-    }
-    join: documentrules_flattened__questionnaires {
-      view_label: "Documentrules Flattened: Questionnaires"
-      sql: LEFT JOIN UNNEST(${documentrules_flattened.questionnaires}) as documentrules_flattened__questionnaires ;;
-      relationship: one_to_many
-    }
-    join: documentrules_flattened__document_timelines {
-      view_label: "Documentrules Flattened: Documenttimelines"
-      sql: LEFT JOIN UNNEST(${documentrules_flattened.document_timelines}) as documentrules_flattened__document_timelines ;;
-      relationship: one_to_many
-    }
-    join: documentrules_flattened__team_member_quorum_list {
-      view_label: "Documentrules Flattened: Teammemberquorumlist"
-      sql: LEFT JOIN UNNEST(${documentrules_flattened.team_member_quorum_list}) as documentrules_flattened__team_member_quorum_list ;;
-      relationship: one_to_many
-    }
-    join: documentrules_flattened__document_stakeholders {
-      view_label: "Documentrules Flattened: Documentstakeholders"
-      sql: LEFT JOIN UNNEST(${documentrules_flattened.document_stakeholders}) as documentrules_flattened__document_stakeholders ;;
-      relationship: one_to_many
-    }
-    join: documentrules_flattened__negotiation_timelines {
-      view_label: "Documentrules Flattened: Negotiationtimelines"
-      sql: LEFT JOIN UNNEST(${documentrules_flattened.negotiation_timelines}) as documentrules_flattened__negotiation_timelines ;;
-      relationship: one_to_many
-    }
-    join: documentrules_flattened__contract_terms_confirmation {
-      view_label: "Documentrules Flattened: Contracttermsconfirmation"
-      sql: LEFT JOIN UNNEST(${documentrules_flattened.contract_terms_confirmation}) as documentrules_flattened__contract_terms_confirmation ;;
-      relationship: one_to_many
-    }
-}
+
 view: documentrules_flattened {
   sql_table_name: `iamtests-315719.mongodb_gep.documentrules_flattened` ;;
 
