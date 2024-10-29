@@ -29,3 +29,13 @@ explore: flattened_documentrules {
 }
 
 explore: documentrules {}
+
+explore: documentrules_flattened_dbt {
+  hidden: no
+  description: "location not found in us? "
+  join: documentrules_flattened_dbt__document_timelines {
+    view_label: "Documentrules Flattened Dbt: Documenttimelines"
+    sql: LEFT JOIN UNNEST(${documentrules_flattened_dbt.document_timelines}) as documentrules_flattened_dbt__document_timelines ;;
+    relationship: one_to_many
+  }
+}

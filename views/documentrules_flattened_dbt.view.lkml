@@ -1,12 +1,5 @@
 # Un-hide and use this explore, or copy the joins into another explore, to get all the fully nested relationships from this view
-explore: documentrules_flattened_dbt {
-  hidden: yes
-    join: documentrules_flattened_dbt__document_timelines {
-      view_label: "Documentrules Flattened Dbt: Documenttimelines"
-      sql: LEFT JOIN UNNEST(${documentrules_flattened_dbt.document_timelines}) as documentrules_flattened_dbt__document_timelines ;;
-      relationship: one_to_many
-    }
-}
+
 view: documentrules_flattened_dbt {
   sql_table_name: `iamtests-315719.mongodb_gep.documentrules_flattened_dbt` ;;
 
