@@ -20,7 +20,6 @@ include: "/views/*.view.lkml"                # include all views in the views/ f
 # }
 
 explore: documentrules_flattened {
-  hidden: no
   join: documentrules_flattened__suppliers {
     view_label: "Documentrules Flattened: Suppliers"
     sql: LEFT JOIN UNNEST(${documentrules_flattened.suppliers}) as documentrules_flattened__suppliers ;;
