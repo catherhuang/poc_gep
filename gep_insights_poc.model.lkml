@@ -1,23 +1,6 @@
 connection: "gep_mongodb_connection"
 
-include: "/views/*.view.lkml"                # include all views in the views/ folder in this project
-# include: "/**/*.view.lkml"                 # include all views in this project
-# include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
-
-# # Select the views that should be a part of this model,
-# # and define the joins that connect them together.
-#
-# explore: order_items {
-#   join: orders {
-#     relationship: many_to_one
-#     sql_on: ${orders.id} = ${order_items.order_id} ;;
-#   }
-#
-#   join: users {
-#     relationship: many_to_one
-#     sql_on: ${users.id} = ${orders.user_id} ;;
-#   }
-# }
+include: "/views/*.view.lkml"                # include all views in the views/
 
 explore: flattened_documentrules {
   hidden: yes
@@ -29,13 +12,3 @@ explore: flattened_documentrules {
 }
 
 explore: documentrules {}
-
-explore: documentrules_flattened_dbt {
-  hidden: no
-  description: "location not found in us? "
-  join: documentrules_flattened_dbt__document_timelines {
-    view_label: "Documentrules Flattened Dbt: Documenttimelines"
-    sql: LEFT JOIN UNNEST(${documentrules_flattened_dbt.document_timelines}) as documentrules_flattened_dbt__document_timelines ;;
-    relationship: one_to_many
-  }
-}
