@@ -9,7 +9,6 @@ explore: flattened_documentrules {
 view: flattened_documentrules {
   sql_table_name: `iamtests-315719.mongodb_gep.flattened_documentrules` ;;
 
-
   dimension: _dbt_processed_at {
     type: date
     description: "_dbt_processed_at"
