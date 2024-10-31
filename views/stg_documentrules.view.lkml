@@ -309,7 +309,6 @@ view: stg_documentrules__suppliers {
     label: "Pricesheets Assignments"
     sql: JSON_QUERY(${TABLE}.raw_json, '$.pricesheetsAssignments') ;;
   }
-
 }
 
 view: stg_documentrules__guidelines {
