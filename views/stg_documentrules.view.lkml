@@ -307,7 +307,7 @@ view: stg_documentrules__suppliers {
   }
   dimension: pricesheets_assignments {
     label: "Pricesheets Assignments"
-    sql: JSON_VALUE(${TABLE}.raw_json, '$.pricesheetsAssignments') ;;
+    sql: JSON_QUERY(${TABLE}.raw_json, '$.pricesheetsAssignments') ;;
   }
 
 }
