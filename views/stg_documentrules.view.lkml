@@ -411,13 +411,23 @@ view: pricesheetsAssignments {
   extends: [stg_documentrules__suppliers]
   view_label: "Suppliers Pricesheets Assignments"
 
-
   dimension: pricesheetsAssignments {
     description: "pricesheetsAssignments"
     view_label: "Pricesheet Assignment "
     type: string
     sql: JSON_VALUE(${TABLE}.raw_json, '$.pricesheetsAssignments') ;; }
   }
+
+view: supplierDocumentStatus {
+  extends: [stg_documentrules__suppliers]
+  view_label: "Suppliers Document Status"
+
+  dimension: supplierDocumentStatus {
+    description: "supplierDocumentStatus"
+    view_label: "Supplier Document Status "
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.supplierDocumentStatus') ;; }
+}
 
 
 view: stg_documentrules__guidelines {
