@@ -1,455 +1,516 @@
-# Un-hide and use this explore, or copy the joins into another explore, to get all the fully nested relationships from this view
-explore: stg_documentrules {
+
+
+ explore: stg_documentrules { 
   label: "Document Rules"
-  hidden: yes
-    join: stg_documentrules__suppliers {
-      view_label: "Suppliers"
-      sql: LEFT JOIN UNNEST(${stg_documentrules.suppliers}) as stg_documentrules__suppliers ;;
-      relationship: one_to_many
-    }
-    join: stg_documentrules__guidelines {
-      view_label: "Guidelines"
-      sql: LEFT JOIN UNNEST(${stg_documentrules.guidelines}) as stg_documentrules__guidelines ;;
-      relationship: one_to_many
-    }
-    join: stg_documentrules__pricesheets {
-      view_label: "Pricesheets"
-      sql: LEFT JOIN UNNEST(${stg_documentrules.pricesheets}) as stg_documentrules__pricesheets ;;
-      relationship: one_to_many
-    }
-    join: stg_documentrules__contract_terms {
-      view_label: "Contract Terms"
-      sql: LEFT JOIN UNNEST(${stg_documentrules.contract_terms}) as stg_documentrules__contract_terms ;;
-      relationship: one_to_many
-    }
-    join: stg_documentrules__questionnaires {
-      view_label: "Questionnaires"
-      sql: LEFT JOIN UNNEST(${stg_documentrules.questionnaires}) as stg_documentrules__questionnaires ;;
-      relationship: one_to_many
-    }
-    join: stg_documentrules__document_timelines {
-      view_label: "Document Timelines"
-      sql: LEFT JOIN UNNEST(${stg_documentrules.document_timelines}) as stg_documentrules__document_timelines ;;
-      relationship: one_to_many
-    }
-    join: stg_documentrules__document_stakeholders {
-      view_label: "Document Stakeholders"
-      sql: LEFT JOIN UNNEST(${stg_documentrules.document_stakeholders}) as stg_documentrules__document_stakeholders ;;
-      relationship: one_to_many
-    }
-    join: stg_documentrules__suppliers__supplier_contacts {
-      view_label: "Suppliers Contacts"
-      sql: LEFT JOIN UNNEST(${stg_documentrules__suppliers.supplier_contacts) as stg_documentrules__suppliers__supplier_contacts ;;
-      relationship: one_to_many
-    }
-}
+  hidden: yes 
+  join: stg_documentrules__suppliers { 
+    view_label: "Suppliers"
+    sql: LEFT JOIN UNNEST(${stg_documentrules.suppliers}) as stg_documentrules__suppliers ;;
+    relationship: one_to_many }
+  join: stg_documentrules__guidelines { 
+    view_label: "Guidelines"
+    sql: LEFT JOIN UNNEST(${stg_documentrules.guidelines}) as stg_documentrules__guidelines ;;
+    relationship: one_to_many }
+  join: stg_documentrules__pricesheets { 
+    view_label: "Pricesheets"
+    sql: LEFT JOIN UNNEST(${stg_documentrules.pricesheets}) as stg_documentrules__pricesheets ;;
+    relationship: one_to_many }
+  join: stg_documentrules__contract_terms { 
+    view_label: "Contract Terms"
+    sql: LEFT JOIN UNNEST(${stg_documentrules.contract_terms}) as stg_documentrules__contract_terms ;;
+    relationship: one_to_many }
+  join: stg_documentrules__questionnaires { 
+    view_label: "Questionnaires"
+    sql: LEFT JOIN UNNEST(${stg_documentrules.questionnaires}) as stg_documentrules__questionnaires ;;
+    relationship: one_to_many }
+  join: stg_documentrules__document_timelines { 
+    view_label: "Document Timelines"
+    sql: LEFT JOIN UNNEST(${stg_documentrules.document_timelines}) as stg_documentrules__document_timelines ;;
+    relationship: one_to_many }
+  join: stg_documentrules__document_stakeholders { 
+    view_label: "Document Stakeholders"
+    sql: LEFT JOIN UNNEST(${stg_documentrules.document_stakeholders}) as stg_documentrules__document_stakeholders ;;
+    relationship: one_to_many }
+  join: stg_documentrules__suppliers__supplier_contacts { 
+    view_label: "Suppliers Contacts"
+    sql: LEFT JOIN UNNEST(${stg_documentrules__suppliers.supplier_contacts) as stg_documentrules__suppliers__supplier_contacts ;;
+    relationship: one_to_many } }
+
+
 view: stg_documentrules {
   sql_table_name: `iamtests-315719.mongodb_gep.stg_documentrules` ;;
-
-  dimension_group: _dbt_processed {
-    type: time
-    timeframes: [raw, time, date, week, month, quarter, year]
-    sql: ${TABLE}._dbt_processed_at ;;
-  }
-  dimension: _id {
-    type: string
-    sql: ${TABLE}._id ;;
-  }
-  dimension: _source_json {
-    type: string
-    sql: ${TABLE}._source_json ;;
-  }
-  dimension: contract_terms {
-    hidden: yes
-    sql: ${TABLE}.contract_terms ;;
-  }
-  dimension: created_by {
-    type: string
-    sql: ${TABLE}.created_by ;;
-  }
-  dimension_group: created {
-    type: time
-    timeframes: [raw, time, date, week, month, quarter, year]
-    sql: ${TABLE}.created_on ;;
-  }
-  dimension: document_id {
-    type: string
-    sql: ${TABLE}.document_id ;;
-  }
-  dimension: document_settings__access_df_before_accepting_guideline {
+  
+  
+  dimension: _id {   type: string
+    sql: ${TABLE}._id ;; }
+  dimension: _source_json {   type: string
+    sql: ${TABLE}._source_json ;; }
+  dimension: contract_terms {   hidden: yes
+    sql: ${TABLE}.contract_terms ;; }
+  dimension: created_by {   type: string
+    sql: ${TABLE}.created_by ;; }
+  dimension: document_id {   type: string
+    sql: ${TABLE}.document_id ;; }
+  dimension: document_settings__access_df_before_accepting_guideline { 
     type: yesno
     sql: ${TABLE}.document_settings.access_df_before_accepting_guideline ;;
     group_label: "Document Settings"
-    group_item_label: "Access Df Before Accepting Guideline"
-  }
-  dimension: document_settings__allow_feedback_response_revision {
+    group_item_label: "Access Df Before Accepting Guideline" }
+  dimension: document_settings__allow_feedback_response_revision { 
     type: yesno
     sql: ${TABLE}.document_settings.allow_feedback_response_revision ;;
     group_label: "Document Settings"
-    group_item_label: "Allow Feedback Response Revision"
-  }
-  dimension: document_settings__confidential {
+    group_item_label: "Allow Feedback Response Revision" }
+  dimension: document_settings__confidential { 
     type: yesno
     sql: ${TABLE}.document_settings.confidential ;;
     group_label: "Document Settings"
-    group_item_label: "Confidential"
-  }
-  dimension: document_settings__diverse_suppliers {
+    group_item_label: "Confidential" }
+  dimension: document_settings__diverse_suppliers { 
     type: yesno
     sql: ${TABLE}.document_settings.diverse_suppliers ;;
     group_label: "Document Settings"
-    group_item_label: "Diverse Suppliers"
-  }
-  dimension: document_settings__diverse_suppliers_comments {
+    group_item_label: "Diverse Suppliers" }
+  dimension: document_settings__diverse_suppliers_comments { 
     type: string
     sql: ${TABLE}.document_settings.diverse_suppliers_comments ;;
     group_label: "Document Settings"
-    group_item_label: "Diverse Suppliers Comments"
-  }
-  dimension: document_settings__pricesheet_weightage {
+    group_item_label: "Diverse Suppliers Comments" }
+  dimension: document_settings__pricesheet_weightage { 
     type: number
     sql: ${TABLE}.document_settings.pricesheet_weightage ;;
     group_label: "Document Settings"
-    group_item_label: "Pricesheet Weightage"
-  }
-  dimension: document_settings__questionnaire_weightage {
+    group_item_label: "Pricesheet Weightage" }
+  dimension: document_settings__questionnaire_weightage { 
     type: number
     sql: ${TABLE}.document_settings.questionnaire_weightage ;;
     group_label: "Document Settings"
-    group_item_label: "Questionnaire Weightage"
-  }
-  dimension: document_settings__raw_json {
+    group_item_label: "Questionnaire Weightage" }
+  dimension: document_settings__raw_json { 
     type: string
     sql: ${TABLE}.document_settings.raw_json ;;
     group_label: "Document Settings"
-    group_item_label: "Raw JSON"
-  }
-  dimension: document_stakeholders {
-    hidden: yes
-    sql: ${TABLE}.document_stakeholders ;;
-  }
-  dimension: document_status__name {
+    group_item_label: "Raw JSON" }
+  dimension: document_stakeholders {   hidden: yes
+    sql: ${TABLE}.document_stakeholders ;; }
+  dimension: document_status__name { 
     type: string
     sql: ${TABLE}.document_status.name ;;
     group_label: "Document Status"
-    group_item_label: "Name"
-  }
-  dimension: document_status__raw_json {
+    group_item_label: "Name" }
+  dimension: document_status__raw_json { 
     type: string
     sql: ${TABLE}.document_status.raw_json ;;
     group_label: "Document Status"
-    group_item_label: "Raw JSON"
-  }
-  dimension: document_status__status_code {
+    group_item_label: "Raw JSON" }
+  dimension: document_status__status_code { 
     type: number
     sql: ${TABLE}.document_status.status_code ;;
     group_label: "Document Status"
-    group_item_label: "Status Code"
-  }
-  dimension: document_status__status_name {
+    group_item_label: "Status Code" }
+  dimension: document_status__status_name { 
     type: string
     sql: ${TABLE}.document_status.status_name ;;
     group_label: "Document Status"
-    group_item_label: "Status Name"
-  }
-  dimension: document_timelines {
-    hidden: yes
-    sql: ${TABLE}.document_timelines ;;
-  }
-  dimension: guidelines {
-    hidden: yes
-    sql: ${TABLE}.guidelines ;;
-  }
-  dimension: is_deleted {
-    type: yesno
-    sql: ${TABLE}.is_deleted ;;
-  }
-  dimension: is_published {
-    type: yesno
-    sql: ${TABLE}.is_published ;;
-  }
-  dimension: is_silent_withdrawn {
-    type: yesno
-    sql: ${TABLE}.is_silent_withdrawn ;;
-  }
-  dimension: is_withdrawn {
-    type: yesno
-    sql: ${TABLE}.is_withdrawn ;;
-  }
-  dimension: modified_by {
-    type: string
-    sql: ${TABLE}.modified_by ;;
-  }
-  dimension_group: modified {
-    type: time
-    timeframes: [raw, time, date, week, month, quarter, year]
-    sql: ${TABLE}.modified_on ;;
-  }
-  dimension: parent_id {
-    type: string
-    sql: ${TABLE}.parent_id ;;
-  }
-  dimension: pricesheets {
-    hidden: yes
-    sql: ${TABLE}.pricesheets ;;
-  }
-  dimension: questionnaires {
-    hidden: yes
-    sql: ${TABLE}.questionnaires ;;
-  }
-  dimension: rfx_source_type {
-    type: number
-    sql: ${TABLE}.rfx_source_type ;;
-  }
-  dimension: root_id {
-    type: string
-    sql: ${TABLE}.root_id ;;
-  }
-  dimension: rps_scan_details__is_scanned {
+    group_item_label: "Status Name" }
+  dimension: document_timelines {   hidden: yes
+    sql: ${TABLE}.document_timelines ;; }
+  dimension: guidelines {   hidden: yes
+    sql: ${TABLE}.guidelines ;; }
+  dimension: is_deleted {   type: yesno
+    sql: ${TABLE}.is_deleted ;; }
+  dimension: is_published {   type: yesno
+    sql: ${TABLE}.is_published ;; }
+  dimension: is_silent_withdrawn {   type: yesno
+    sql: ${TABLE}.is_silent_withdrawn ;; }
+  dimension: is_withdrawn {   type: yesno
+    sql: ${TABLE}.is_withdrawn ;; }
+  dimension: modified_by {   type: string
+    sql: ${TABLE}.modified_by ;; }
+  dimension: parent_id {   type: string
+    sql: ${TABLE}.parent_id ;; }
+  dimension: pricesheets {   hidden: yes
+    sql: ${TABLE}.pricesheets ;; }
+  dimension: questionnaires {   hidden: yes
+    sql: ${TABLE}.questionnaires ;; }
+  dimension: rfx_source_type {   type: number
+    sql: ${TABLE}.rfx_source_type ;; }
+  dimension: root_id {   type: string
+    sql: ${TABLE}.root_id ;; }
+  dimension: rps_scan_details__is_scanned { 
     type: yesno
     sql: ${TABLE}.rps_scan_details.is_scanned ;;
     group_label: "Rps Scan Details"
-    group_item_label: "Is Scanned"
-  }
-  dimension: rps_scan_details__raw_json {
+    group_item_label: "Is Scanned" }
+  dimension: rps_scan_details__raw_json { 
     type: string
     sql: ${TABLE}.rps_scan_details.raw_json ;;
     group_label: "Rps Scan Details"
-    group_item_label: "Raw JSON"
-  }
-  dimension: rps_scan_details__rps_file_id {
+    group_item_label: "Raw JSON" }
+  dimension: rps_scan_details__rps_file_id { 
     type: string
     sql: ${TABLE}.rps_scan_details.rps_file_id ;;
     group_label: "Rps Scan Details"
-    group_item_label: "Rps File ID"
-  }
-  dimension: rps_scan_details__rps_file_name {
+    group_item_label: "Rps File ID" }
+  dimension: rps_scan_details__rps_file_name { 
     type: string
     sql: ${TABLE}.rps_scan_details.rps_file_name ;;
     group_label: "Rps Scan Details"
-    group_item_label: "Rps File Name"
-  }
-  dimension: rps_scan_details__scan_supplier_count {
+    group_item_label: "Rps File Name" }
+  dimension: rps_scan_details__scan_supplier_count { 
     type: number
     sql: ${TABLE}.rps_scan_details.scan_supplier_count ;;
     group_label: "Rps Scan Details"
-    group_item_label: "Scan Supplier Count"
+    group_item_label: "Scan Supplier Count" }
+  dimension: source_hash {   type: string
+    sql: ${TABLE}.source_hash ;; }
+  dimension: suppliers {   hidden: yes
+    sql: ${TABLE}.suppliers ;; }
+  dimension_group: _dbt_processed { 
+    type: time
+    timeframes: [ raw, time, date, week, month, quarter, year,] 
+    sql: ${TABLE}._dbt_processed_at ;; }
+  dimension_group: created { 
+    type: time
+    timeframes: [ raw, time, date, week, month, quarter, year,] 
+    sql: ${TABLE}.created_on ;; }
+  dimension_group: modified { 
+    type: time
+    timeframes: [ raw, time, date, week, month, quarter, year,] 
+    sql: ${TABLE}.modified_on ;; }
+  measure: count {   type: count
+    drill_fields: [ document_status__name, document_status__status_name, rps_scan_details__rps_file_name,]  }
   }
-  dimension: source_hash {
-    type: string
-    sql: ${TABLE}.source_hash ;;
-  }
-  dimension: suppliers {
-    hidden: yes
-    sql: ${TABLE}.suppliers ;;
-  }
-  measure: count {
-    type: count
-    drill_fields: [document_status__name, document_status__status_name, rps_scan_details__rps_file_name]
-  }
-}
+
 
 view: stg_documentrules__suppliers {
-  dimension: is_guidelines_accepted {
-    type: yesno
-    sql: is_guidelines_accepted ;;
-  }
-  dimension: is_response_submitted {
-    type: yesno
-    sql: is_response_submitted ;;
-  }
-  dimension: legal_company_name {
+  dimension: is_guidelines_accepted {   type: yesno
+    sql: is_guidelines_accepted ;; }
+  dimension: is_response_submitted {   type: yesno
+    sql: is_response_submitted ;; }
+  dimension: legal_company_name {   type: string
+    sql: legal_company_name ;; }
+  dimension: partner_code {   type: number
+    sql: partner_code ;; }
+  dimension: raw_json { 
+    description: "model in the json extension section below"
+    hidden: no
     type: string
-    sql: legal_company_name ;;
-  }
-  dimension: partner_code {
-    type: number
-    sql: partner_code ;;
-  }
-  dimension: status__name {
+    sql: raw_json ;; }
+  dimension: status__name { 
     type: string
     sql: ${TABLE}.status.name ;;
     group_label: "Status"
-    group_item_label: "Name"
-  }
-  dimension: status__status_code {
+    group_item_label: "Name" }
+  dimension: status__status_code { 
     type: number
     sql: ${TABLE}.status.status_code ;;
     group_label: "Status"
-    group_item_label: "Status Code"
-  }
-  dimension: status__status_name {
+    group_item_label: "Status Code" }
+  dimension: status__status_name { 
     type: string
     sql: ${TABLE}.status.status_name ;;
     group_label: "Status"
-    group_item_label: "Status Name"
-  }
-  dimension: stg_documentrules__suppliers {
+    group_item_label: "Status Name" }
+  dimension: stg_documentrules__suppliers { 
     type: string
     hidden: yes
-    sql: stg_documentrules__suppliers ;;
+    sql: stg_documentrules__suppliers ;; }
+  dimension: supplier_contacts {   hidden: yes
+    sql: supplier_contacts ;; }
+  
+  
   }
-  dimension: supplier_contacts {
-    hidden: yes
-    sql: supplier_contacts ;;
-  }
-  dimension: raw_json {
-    description:"model in the json extension section below"
-    hidden: no
+
+
+view: +stg_documentrules__suppliers {
+  view_label: "Suppliers - Pricesheets Assignments "
+  
+  
+  dimension: clientSupplierCode { 
+    description: "clientSupplierCode"
     type: string
-    sql: raw_json ;;
-  }
-
-  # dimension: client_supplier_code {
-  #   label: "Client Supplier Code"
-  #   # sql: JSON_VALUE(${TABLE}.raw_json, '$.clientSupplierCode') ;;
-  #   sql: json_value(${raw_json}, '$.clientSupplierCode') ;;
-  # }
-  # dimension: pricesheets_assignments {
-  #   label: "Pricesheets Assignments"
-  #   sql: JSON_QUERY(${TABLE}.raw_json, '$.pricesheetsAssignments') ;;
-  # }
-}
-
-view: +stg_documentrules__suppliers{
-  view_label: "Suppliers Raw Json"
-  ## unnest fields from suppliers raw json
-  dimension: client_supplier_code {
-    label: "Client Supplier Code"
-    sql: JSON_VALUE(${TABLE}.raw_json, '$.clientSupplierCode') ;;
-  }
-  dimension: contactCode {
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.clientSupplierCode') ;; }
+  dimension: contactCode { 
     description: "contactCode"
     type: string
     sql: JSON_VALUE(${TABLE}.raw_json, '$.contactCode') ;; }
-}
-
-view: +stg_documentrules__suppliers{
-  view_label: "Suppliers - Pricesheets Assignments "
-  ## unnest fields from pricesheet_assignments
-  dimension: pricesheets_assignments {
-    label: "Pricesheets Assignments"
-    sql: JSON_QUERY(${TABLE}.raw_json, '$.pricesheetsAssignments') ;;
+  dimension: createdBy { 
+    description: "createdBy"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.createdBy') ;; }
+  dimension: createdOn { 
+    description: "createdOn"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.createdOn') ;; }
+  dimension: guidelinesAcceptedBy { 
+    description: "guidelinesAcceptedBy"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.guidelinesAcceptedBy') ;; }
+  dimension: guidelinesAcceptedOn { 
+    description: "guidelinesAcceptedOn"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.guidelinesAcceptedOn') ;; }
+  dimension: isAwardAcknowledged { 
+    description: "isAwardAcknowledged"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.isAwardAcknowledged') ;; }
+  dimension: isCommercialAcceptable { 
+    description: "isCommercialAcceptable"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.isCommercialAcceptable') ;; }
+  dimension: isContractTermsAccepted { 
+    description: "isContractTermsAccepted"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.isContractTermsAccepted') ;; }
+  dimension: isFeedbackRevised { 
+    description: "isFeedbackRevised"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.isFeedbackRevised') ;; }
+  dimension: isGuidelinesAccepted { 
+    description: "isGuidelinesAccepted"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.isGuidelinesAccepted') ;; }
+  dimension: isInvitationDeclined { 
+    description: "isInvitationDeclined"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.isInvitationDeclined') ;; }
+  dimension: isParticipationConfirmed { 
+    description: "isParticipationConfirmed"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.isParticipationConfirmed') ;; }
+  dimension: isPermissibleCheckRequired { 
+    description: "isPermissibleCheckRequired"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.isPermissibleCheckRequired') ;; }
+  dimension: isResponseSubmitted { 
+    description: "isResponseSubmitted"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.isResponseSubmitted') ;; }
+  dimension: isRevised { 
+    description: "isRevised"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.isRevised') ;; }
+  dimension: isShortlisted { 
+    description: "isShortlisted"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.isShortlisted') ;; }
+  dimension: isShortlistedForFeedback { 
+    description: "isShortlistedForFeedback"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.isShortlistedForFeedback') ;; }
+  dimension: isShortlistedForTwoEnvBid { 
+    description: "isShortlistedForTwoEnvBid"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.isShortlistedForTwoEnvBid') ;; }
+  dimension: isSuperECSL { 
+    description: "isSuperECSL"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.isSuperECSL') ;; }
+  dimension: isTechnicalAcceptable { 
+    description: "isTechnicalAcceptable"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.isTechnicalAcceptable') ;; }
+  dimension: isTprmShortlisted { 
+    description: "isTprmShortlisted"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.isTprmShortlisted') ;; }
+  dimension: legalCompanyMaskName { 
+    description: "legalCompanyMaskName"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.legalCompanyMaskName') ;; }
+  dimension: legalCompanyName { 
+    description: "legalCompanyName"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.legalCompanyName') ;; }
+  dimension: modifiedBy { 
+    description: "modifiedBy"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.modifiedBy') ;; }
+  dimension: modifiedOn { 
+    description: "modifiedOn"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.modifiedOn') ;; }
+  dimension: partnerCode { 
+    description: "partnerCode"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.partnerCode') ;; }
+  dimension: pricesheetsAssignments { 
+    description: "pricesheetsAssignments"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.pricesheetsAssignments') ;; }
+  dimension: pricesheets_assignments {   label: "Pricesheets Assignments"
+    sql: JSON_QUERY(${TABLE}.raw_json, '$.pricesheetsAssignments') ;; }
+  dimension: responseSubmittedOn { 
+    description: "responseSubmittedOn"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.responseSubmittedOn') ;; }
+  dimension: shortlistedForFeedbackOn { 
+    description: "shortlistedForFeedbackOn"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.shortlistedForFeedbackOn') ;; }
+  dimension: sourceType { 
+    description: "sourceType"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.sourceType') ;; }
+  dimension: stakeholderType { 
+    description: "stakeholderType"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.stakeholderType') ;; }
+  dimension: status { 
+    description: "status"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.status') ;; }
+  dimension: status.name { 
+    description: "status.name"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.status.name') ;; }
+  dimension: status.statusCode { 
+    description: "status.statusCode"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.status.statusCode') ;; }
+  dimension: status.statusName { 
+    description: "status.statusName"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.status.statusName') ;; }
+  dimension: statusUpdatedOn { 
+    description: "statusUpdatedOn"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.statusUpdatedOn') ;; }
+  dimension: summarySheetModifiedOn { 
+    description: "summarySheetModifiedOn"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.summarySheetModifiedOn') ;; }
+  dimension: supplierContacts { 
+    description: "supplierContacts"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.supplierContacts') ;; }
+  dimension: supplierDocumentStatus { 
+    description: "supplierDocumentStatus"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.supplierDocumentStatus') ;; }
+  dimension: supplierDocumentStatus.name { 
+    description: "supplierDocumentStatus.name"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.supplierDocumentStatus.name') ;; }
+  dimension: supplierDocumentStatus.statusCode { 
+    description: "supplierDocumentStatus.statusCode"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.supplierDocumentStatus.statusCode') ;; }
+  dimension: supplierDocumentStatus.statusName { 
+    description: "supplierDocumentStatus.statusName"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.supplierDocumentStatus.statusName') ;; }
+  dimension: surrogateBy { 
+    description: "surrogateBy"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.surrogateBy') ;; }
+  dimension: surrogateByName { 
+    description: "surrogateByName"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.surrogateByName') ;; }
+  dimension: taskId { 
+    description: "taskId"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.taskId') ;; }
+  
+  
   }
-}
 
 
 view: stg_documentrules__guidelines {
-  dimension: stg_documentrules__guidelines {
-    type: string
-    sql: string(stg_documentrules__guidelines) ;;
+  dimension: stg_documentrules__guidelines {   type: string
+    sql: string(stg_documentrules__guidelines) ;; }
+  
+  
   }
-}
+
 
 view: stg_documentrules__pricesheets {
-  dimension: stg_documentrules__pricesheets {
-    type: string
-    sql: string(stg_documentrules__pricesheets) ;;
+  dimension: stg_documentrules__pricesheets {   type: string
+    sql: string(stg_documentrules__pricesheets) ;; }
+  
+  
   }
-}
+
 
 view: stg_documentrules__contract_terms {
-  dimension: stg_documentrules__contract_terms {
-    type: string
-    sql: string(stg_documentrules__contract_terms) ;;
+  dimension: stg_documentrules__contract_terms {   type: string
+    sql: string(stg_documentrules__contract_terms) ;; }
+  
+  
   }
-}
+
 
 view: stg_documentrules__questionnaires {
-  dimension: stg_documentrules__questionnaires {
-    type: string
-    sql: string(stg_documentrules__questionnaires) ;;
+  dimension: stg_documentrules__questionnaires {   type: string
+    sql: string(stg_documentrules__questionnaires) ;; }
+  
+  
   }
-}
+
 
 view: stg_documentrules__document_timelines {
-  dimension_group: end_date {
-    type: time
-    timeframes: [raw, time, date, week, month, quarter, year]
-    sql: end_date_time ;;
-  }
-  dimension: name {
-    type: string
-    sql: name ;;
-  }
-  dimension: raw_json {
-    type: string
-    sql: raw_json ;;
-  }
-  dimension_group: start_date {
-    type: time
-    timeframes: [raw, time, date, week, month, quarter, year]
-    sql: start_date_time ;;
-  }
-  dimension: stg_documentrules__document_timelines {
+  dimension: name {   type: string
+    sql: name ;; }
+  dimension: raw_json {   type: string
+    sql: raw_json ;; }
+  dimension: stg_documentrules__document_timelines { 
     type: string
     hidden: yes
-    sql: stg_documentrules__document_timelines ;;
+    sql: stg_documentrules__document_timelines ;; }
+  dimension: type_id {   type: number
+    sql: type_id ;; }
+  dimension: visible_to_supplier {   type: yesno
+    sql: visible_to_supplier ;; }
+  dimension_group: end_date { 
+    type: time
+    timeframes: [ raw, time, date, week, month, quarter, year,] 
+    sql: end_date_time ;; }
+  dimension_group: start_date { 
+    type: time
+    timeframes: [ raw, time, date, week, month, quarter, year,] 
+    sql: start_date_time ;; }
+  
   }
-  dimension: type_id {
-    type: number
-    sql: type_id ;;
-  }
-  dimension: visible_to_supplier {
-    type: yesno
-    sql: visible_to_supplier ;;
-  }
-}
+
 
 view: stg_documentrules__document_stakeholders {
-
-  dimension: contact_code {
-    type: number
-    sql: contact_code ;;
-  }
-  dimension: first_name {
-    type: string
-    sql: first_name ;;
-  }
-  dimension: invitation_status {
-    type: string
-    sql: invitation_status ;;
-  }
-  dimension: is_approver {
-    type: yesno
-    sql: is_approver ;;
-  }
-  dimension: last_name {
-    type: string
-    sql: last_name ;;
-  }
-  dimension: raw_json {
-    type: string
-    sql: raw_json ;;
-  }
-  dimension: role {
-    type: number
-    sql: role ;;
-  }
-  dimension: stg_documentrules__document_stakeholders {
+  dimension: contact_code {   type: number
+    sql: contact_code ;; }
+  dimension: first_name {   type: string
+    sql: first_name ;; }
+  dimension: invitation_status {   type: string
+    sql: invitation_status ;; }
+  dimension: is_approver {   type: yesno
+    sql: is_approver ;; }
+  dimension: last_name {   type: string
+    sql: last_name ;; }
+  dimension: raw_json {   type: string
+    sql: raw_json ;; }
+  dimension: role {   type: number
+    sql: role ;; }
+  dimension: stg_documentrules__document_stakeholders { 
     type: string
     hidden: yes
-    sql: stg_documentrules__document_stakeholders ;;
+    sql: stg_documentrules__document_stakeholders ;; }
+  
+  
   }
-}
+
 
 view: stg_documentrules__suppliers__supplier_contacts {
   view_label: "Contacts"
-
-  dimension: contact_code {
-    type: string
-    sql: ${TABLE}.contact_code ;;
+  
+  
+  dimension: contact_code {   type: string
+    sql: ${TABLE}.contact_code ;; }
+  dimension: email_id {   type: string
+    sql: ${TABLE}.email_id ;; }
+  dimension: name {   type: string
+    sql: ${TABLE}.name ;; }
+  dimension: role_id {   type: number
+    sql: ${TABLE}.role_id ;; }
+  
+  
   }
-  dimension: email_id {
-    type: string
-    sql: ${TABLE}.email_id ;;
-  }
-  dimension: name {
-    type: string
-    sql: ${TABLE}.name ;;
-  }
-  dimension: role_id {
-    type: number
-    sql: ${TABLE}.role_id ;;
-  }
-}
