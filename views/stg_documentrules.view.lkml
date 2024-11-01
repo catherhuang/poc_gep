@@ -1,44 +1,45 @@
 # Un-hide and use this explore, or copy the joins into another explore, to get all the fully nested relationships from this view
 explore: stg_documentrules {
+  label: "Document Rules"
   hidden: yes
     join: stg_documentrules__suppliers {
-      view_label: "Stg Documentrules: Suppliers"
+      view_label: "Suppliers"
       sql: LEFT JOIN UNNEST(${stg_documentrules.suppliers}) as stg_documentrules__suppliers ;;
       relationship: one_to_many
     }
     join: stg_documentrules__guidelines {
-      view_label: "Stg Documentrules: Guidelines"
+      view_label: "Guidelines"
       sql: LEFT JOIN UNNEST(${stg_documentrules.guidelines}) as stg_documentrules__guidelines ;;
       relationship: one_to_many
     }
     join: stg_documentrules__pricesheets {
-      view_label: "Stg Documentrules: Pricesheets"
+      view_label: "Pricesheets"
       sql: LEFT JOIN UNNEST(${stg_documentrules.pricesheets}) as stg_documentrules__pricesheets ;;
       relationship: one_to_many
     }
     join: stg_documentrules__contract_terms {
-      view_label: "Stg Documentrules: Contract Terms"
+      view_label: "Contract Terms"
       sql: LEFT JOIN UNNEST(${stg_documentrules.contract_terms}) as stg_documentrules__contract_terms ;;
       relationship: one_to_many
     }
     join: stg_documentrules__questionnaires {
-      view_label: "Stg Documentrules: Questionnaires"
+      view_label: "Questionnaires"
       sql: LEFT JOIN UNNEST(${stg_documentrules.questionnaires}) as stg_documentrules__questionnaires ;;
       relationship: one_to_many
     }
     join: stg_documentrules__document_timelines {
-      view_label: "Stg Documentrules: Document Timelines"
+      view_label: "Document Timelines"
       sql: LEFT JOIN UNNEST(${stg_documentrules.document_timelines}) as stg_documentrules__document_timelines ;;
       relationship: one_to_many
     }
     join: stg_documentrules__document_stakeholders {
-      view_label: "Stg Documentrules: Document Stakeholders"
+      view_label: "Document Stakeholders"
       sql: LEFT JOIN UNNEST(${stg_documentrules.document_stakeholders}) as stg_documentrules__document_stakeholders ;;
       relationship: one_to_many
     }
     join: stg_documentrules__suppliers__supplier_contacts {
-      view_label: "Stg Documentrules: Suppliers Supplier Contacts"
-      sql: LEFT JOIN UNNEST(${stg_documentrules__suppliers.supplier_contacts}) as stg_documentrules__suppliers__supplier_contacts ;;
+      view_label: "Suppliers Contacts"
+      sql: LEFT JOIN UNNEST(${stg_documentrules__suppliers.supplier_contacts) as stg_documentrules__suppliers__supplier_contacts ;;
       relationship: one_to_many
     }
 }
@@ -249,7 +250,6 @@ view: stg_documentrules {
 }
 
 view: stg_documentrules__suppliers {
-
   dimension: is_guidelines_accepted {
     type: yesno
     sql: is_guidelines_accepted ;;
@@ -266,13 +266,6 @@ view: stg_documentrules__suppliers {
     type: number
     sql: partner_code ;;
   }
-  dimension: raw_json {
-    description:"model in the json section below"
-    hidden: no
-    type: string
-    sql: raw_json ;;
-  }
-
   dimension: status__name {
     type: string
     sql: ${TABLE}.status.name ;;
@@ -300,51 +293,72 @@ view: stg_documentrules__suppliers {
     hidden: yes
     sql: supplier_contacts ;;
   }
-  ################################################# JSON #################################################
+  dimension: raw_json {
+    description:"model in the json extension section below"
+    hidden: no
+    type: string
+    sql: raw_json ;;
+  }
+
+  # dimension: client_supplier_code {
+  #   label: "Client Supplier Code"
+  #   # sql: JSON_VALUE(${TABLE}.raw_json, '$.clientSupplierCode') ;;
+  #   sql: json_value(${raw_json}, '$.clientSupplierCode') ;;
+  # }
+  # dimension: pricesheets_assignments {
+  #   label: "Pricesheets Assignments"
+  #   sql: JSON_QUERY(${TABLE}.raw_json, '$.pricesheetsAssignments') ;;
+  # }
+}
+
+view: +stg_documentrules__suppliers{
+  view_label: "Suppliers Raw Json"
+  ## unnest fields from suppliers raw json
   dimension: client_supplier_code {
     label: "Client Supplier Code"
     sql: JSON_VALUE(${TABLE}.raw_json, '$.clientSupplierCode') ;;
   }
+}
+
+view: +stg_documentrules__suppliers{
+  view_label: "Suppliers - Pricesheets Assignments "
+  ## unnest fields from pricesheet_assignments
   dimension: pricesheets_assignments {
     label: "Pricesheets Assignments"
     sql: JSON_QUERY(${TABLE}.raw_json, '$.pricesheetsAssignments') ;;
   }
 }
 
-view: stg_documentrules__guidelines {
 
+view: stg_documentrules__guidelines {
   dimension: stg_documentrules__guidelines {
     type: string
-    sql: stg_documentrules__guidelines ;;
+    sql: string(stg_documentrules__guidelines) ;;
   }
 }
 
 view: stg_documentrules__pricesheets {
-
   dimension: stg_documentrules__pricesheets {
     type: string
-    sql: stg_documentrules__pricesheets ;;
+    sql: string(stg_documentrules__pricesheets) ;;
   }
 }
 
 view: stg_documentrules__contract_terms {
-
   dimension: stg_documentrules__contract_terms {
     type: string
-    sql: stg_documentrules__contract_terms ;;
+    sql: string(stg_documentrules__contract_terms) ;;
   }
 }
 
 view: stg_documentrules__questionnaires {
-
   dimension: stg_documentrules__questionnaires {
     type: string
-    sql: stg_documentrules__questionnaires ;;
+    sql: string(stg_documentrules__questionnaires) ;;
   }
 }
 
 view: stg_documentrules__document_timelines {
-
   dimension_group: end_date {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
@@ -416,6 +430,7 @@ view: stg_documentrules__document_stakeholders {
 }
 
 view: stg_documentrules__suppliers__supplier_contacts {
+  view_label: "Contacts"
 
   dimension: contact_code {
     type: string
