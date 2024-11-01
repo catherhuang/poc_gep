@@ -404,8 +404,6 @@ view: +stg_documentrules__suppliers {
     view_label: "Suppliers - Raw Json Fields"
     type: string
     sql: JSON_VALUE(${TABLE}.raw_json, '$.taskId') ;; }
-
-
   }
 
 
