@@ -33,7 +33,7 @@
     relationship: one_to_many }
   join: stg_documentrules__suppliers__supplier_contacts {
     view_label: "Suppliers Contacts"
-    sql: LEFT JOIN UNNEST(${stg_documentrules__suppliers.supplier_contacts) as stg_documentrules__suppliers__supplier_contacts ;;
+    sql: LEFT JOIN UNNEST(${stg_documentrules__suppliers.supplier_contacts}) as stg_documentrules__suppliers__supplier_contacts ;;
     relationship: one_to_many } }
 
 
@@ -417,8 +417,6 @@ view: pricesheetsAssignments {
     view_label: "Pricesheet Assignment "
     type: string
     sql: JSON_VALUE(${TABLE}.raw_json, '$.pricesheetsAssignments') ;; }
-
-
   }
 
 
