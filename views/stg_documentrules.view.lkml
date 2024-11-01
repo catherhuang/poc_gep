@@ -318,6 +318,10 @@ view: +stg_documentrules__suppliers{
     label: "Client Supplier Code"
     sql: JSON_VALUE(${TABLE}.raw_json, '$.clientSupplierCode') ;;
   }
+  dimension: contactCode {
+    description: "contactCode"
+    type: string
+    sql: JSON_VALUE(${TABLE}.raw_json, '$.contactCode') ;; }
 }
 
 view: +stg_documentrules__suppliers{
