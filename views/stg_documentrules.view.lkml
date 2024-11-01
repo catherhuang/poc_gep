@@ -226,7 +226,8 @@ view: stg_documentrules__suppliers {
 view: +stg_documentrules__suppliers {
   }
 
-view: +stg_documentrules__suppliers {
+view: pricesheetsAssignments  {
+  extends: [stg_documentrules__suppliers]
   view_label: "Suppliers Pricesheets Assignments"
   dimension: pricesheetsAssignments {
     description: "pricesheetsAssignments"
