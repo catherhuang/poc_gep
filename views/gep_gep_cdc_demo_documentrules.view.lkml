@@ -203,7 +203,7 @@ view: gep_gep_cdc_demo_documentrules {
     type: yesno
     sql: ${TABLE}.documentSettings.accessDFBeforeAcceptingGuideline ;;
     group_label: "Document Settings"
-    group_item_label: "Access Dfbefore Accepting Guideline"
+    group_item_label: "Access DF Before Accepting Guideline"
   }
   dimension: document_settings__allow_feedback_response_revision {
     type: yesno
@@ -245,7 +245,7 @@ view: gep_gep_cdc_demo_documentrules {
     type: yesno
     sql: ${TABLE}.documentSettings.enable2BidEnvelope ;;
     group_label: "Document Settings"
-    group_item_label: "Enable2 Bid Envelope"
+    group_item_label: "Enable 2 Bid Envelope"
   }
   dimension: document_settings__enable_item_level_multicurrency {
     type: yesno
@@ -709,7 +709,7 @@ view: gep_gep_cdc_demo_documentrules__guidelines {
 
 view: gep_gep_cdc_demo_documentrules__pricesheets {
 
-  dimension: gep_gep_cdc_demo_documentrules__pricesheets {
+  dimension: pricesheets {
     type: string
     sql: gep_gep_cdc_demo_documentrules__pricesheets ;;
   }
@@ -717,7 +717,7 @@ view: gep_gep_cdc_demo_documentrules__pricesheets {
 
 view: gep_gep_cdc_demo_documentrules__contract_terms {
 
-  dimension: gep_gep_cdc_demo_documentrules__contract_terms {
+  dimension: contract_terms {
     type: string
     sql: gep_gep_cdc_demo_documentrules__contract_terms ;;
   }
@@ -725,7 +725,7 @@ view: gep_gep_cdc_demo_documentrules__contract_terms {
 
 view: gep_gep_cdc_demo_documentrules__question000006es {
 
-  dimension: gep_gep_cdc_demo_documentrules__question000006es {
+  dimension: question000006es {
     type: string
     sql: gep_gep_cdc_demo_documentrules__question000006es ;;
   }
@@ -745,7 +745,7 @@ view: gep_gep_cdc_demo_documentrules__document_timelines {
     type: string
     sql: endDateTime ;;
   }
-  dimension: gep_gep_cdc_demo_documentrules__document_timelines {
+  dimension: document_timelines {
     type: string
     hidden: yes
     sql: gep_gep_cdc_demo_documentrules__document_timelines ;;
@@ -911,7 +911,7 @@ view: gep_gep_cdc_demo_documentrules__negotiation_timelines {
 
 view: gep_gep_cdc_demo_documentrules__contract_terms_confirmation {
 
-  dimension: gep_gep_cdc_demo_documentrules__contract_terms_confirmation {
+  dimension: contract_terms_confirmation {
     type: string
     sql: gep_gep_cdc_demo_documentrules__contract_terms_confirmation ;;
   }
@@ -919,7 +919,7 @@ view: gep_gep_cdc_demo_documentrules__contract_terms_confirmation {
 
 view: gep_gep_cdc_demo_documentrules__document_settings__currency_list {
 
-  dimension: gep_gep_cdc_demo_documentrules__document_settings__currency_list {
+  dimension: document_settings__currency_list {
     type: string
     sql: gep_gep_cdc_demo_documentrules__document_settings__currency_list ;;
   }
@@ -967,7 +967,7 @@ view: gep_gep_cdc_demo_documentrules__suppliers__pricesheets_assignments {
 
 view: gep_gep_cdc_demo_documentrules__document_stakeholders__co_authoring_assignments {
 
-  dimension: gep_gep_cdc_demo_documentrules__document_stakeholders__co_authoring_assignments {
+  dimension: co_authoring_assignments {
     type: string
     sql: gep_gep_cdc_demo_documentrules__document_stakeholders__co_authoring_assignments ;;
   }
@@ -975,7 +975,7 @@ view: gep_gep_cdc_demo_documentrules__document_stakeholders__co_authoring_assign
 
 view: gep_gep_cdc_demo_documentrules__document_stakeholders__x000007luation_assignments {
 
-  dimension: gep_gep_cdc_demo_documentrules__document_stakeholders__x000007luation_assignments {
+  dimension: x000007luation_assignments {
     type: string
     sql: gep_gep_cdc_demo_documentrules__document_stakeholders__x000007luation_assignments ;;
   }
@@ -983,7 +983,7 @@ view: gep_gep_cdc_demo_documentrules__document_stakeholders__x000007luation_assi
 
 view: gep_gep_cdc_demo_documentrules__document_stakeholders__technical000007luation_status {
 
-  dimension: gep_gep_cdc_demo_documentrules__document_stakeholders__technical000007luation_status {
+  dimension: technical000007luation_status {
     type: string
     sql: gep_gep_cdc_demo_documentrules__document_stakeholders__technical000007luation_status ;;
   }
@@ -991,7 +991,7 @@ view: gep_gep_cdc_demo_documentrules__document_stakeholders__technical000007luat
 
 view: gep_gep_cdc_demo_documentrules__document_stakeholders__commercial000007luation_status {
 
-  dimension: gep_gep_cdc_demo_documentrules__document_stakeholders__commercial000007luation_status {
+  dimension: commercial000007luation_status {
     type: string
     sql: gep_gep_cdc_demo_documentrules__document_stakeholders__commercial000007luation_status ;;
   }
@@ -999,7 +999,7 @@ view: gep_gep_cdc_demo_documentrules__document_stakeholders__commercial000007lua
 
 view: gep_gep_cdc_demo_documentrules__document_stakeholders__x000007luation_submitted_partner_codes__general_submitted_partner_codes {
 
-  dimension: gep_gep_cdc_demo_documentrules__document_stakeholders__x000007luation_submitted_partner_codes__general_submitted_partner_codes {
+  dimension: x000007luation_submitted_partner_codes__general_submitted_partner_codes {
     type: string
     sql: gep_gep_cdc_demo_documentrules__document_stakeholders__x000007luation_submitted_partner_codes__general_submitted_partner_codes ;;
   }
@@ -1007,7 +1007,7 @@ view: gep_gep_cdc_demo_documentrules__document_stakeholders__x000007luation_subm
 
 view: gep_gep_cdc_demo_documentrules__document_stakeholders__x000007luation_submitted_partner_codes__technical_submitted_partner_codes {
 
-  dimension: gep_gep_cdc_demo_documentrules__document_stakeholders__x000007luation_submitted_partner_codes__technical_submitted_partner_codes {
+  dimension: x000007luation_submitted_partner_codes__technical_submitted_partner_codes {
     type: string
     sql: gep_gep_cdc_demo_documentrules__document_stakeholders__x000007luation_submitted_partner_codes__technical_submitted_partner_codes ;;
   }
@@ -1015,7 +1015,7 @@ view: gep_gep_cdc_demo_documentrules__document_stakeholders__x000007luation_subm
 
 view: gep_gep_cdc_demo_documentrules__document_stakeholders__x000007luation_submitted_partner_codes__commercial_submitted_partner_codes {
 
-  dimension: gep_gep_cdc_demo_documentrules__document_stakeholders__x000007luation_submitted_partner_codes__commercial_submitted_partner_codes {
+  dimension: x000007luation_submitted_partner_codes__commercial_submitted_partner_codes {
     type: string
     sql: gep_gep_cdc_demo_documentrules__document_stakeholders__x000007luation_submitted_partner_codes__commercial_submitted_partner_codes ;;
   }
