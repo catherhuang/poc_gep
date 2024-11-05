@@ -529,10 +529,6 @@ view: gep_gep_cdc_demo_documentrules {
     hidden: yes
     sql: ${TABLE}.surrogateBidAccess ;;
   }
-  dimension: team_member_lead_list {
-    type: string
-    sql: ${TABLE}.teamMemberLeadList ;;
-  }
   dimension: team_member_quorum_list {
     hidden: yes
     sql: ${TABLE}.teamMemberQuorumList ;;
@@ -540,6 +536,14 @@ view: gep_gep_cdc_demo_documentrules {
   measure: count {
     type: count
     drill_fields: [document_status__name, document_status__status_name, rps_scan_details__rps_file_name]
+  }
+}
+
+view: +gep_gep_cdc_demo_documentrules{
+  ### use refinement to add fields that have schema changes, so it doesn't break existing content based off of core fields
+  dimension: team_member_lead_list {
+    type: string
+    sql: ${TABLE}.teamMemberLeadList ;;
   }
 }
 
@@ -857,6 +861,11 @@ view: gep_gep_cdc_demo_documentrules__document_stakeholders {
     type: string
     sql: lastName ;;
   }
+  dimension: full_name {
+    type: string
+    sql: concat(${first_name}, " ", ${last_name}) ;;
+  }
+
   dimension: role {
     type: number
     sql: role ;;
