@@ -191,8 +191,3 @@ view: documentrules_1 {
     type: count
   }
 }
-
-view: +documentrules_1 {
-
-
-}
