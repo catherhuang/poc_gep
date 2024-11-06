@@ -191,7 +191,6 @@ view: documentrules {
 
 
 view: +documentrules {
-  view_label: "Documentrules"
 
   measure: count {
     view_label: "New Fields Test"
