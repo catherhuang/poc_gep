@@ -1,6 +1,11 @@
 view: documentrules {
   sql_table_name: `iamtests-315719.mbettan.airbyte_after` ;;
 
+  dimension: _ab_cdc_cursor {
+    type: number
+    sql: ${TABLE}._ab_cdc_cursor ;;
+  }
+
   dimension: _ab_cdc_deleted_at {
     type: string
     sql: ${TABLE}._ab_cdc_deleted_at ;;
