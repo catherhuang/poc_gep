@@ -8,4 +8,7 @@ include: "/views/*.view.lkml"
 explore: documentrules_1 {
   label: "Documentrules Demo"
 
+  join: new_fields_demo {
+  }
+
 }

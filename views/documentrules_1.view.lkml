@@ -193,6 +193,5 @@ view: documentrules_1 {
 }
 
 view: +documentrules_1 {
-  extends: [documentrules_1]
 
 }
