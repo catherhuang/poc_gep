@@ -1,5 +1,3 @@
-explore: documentrules {}
-
 view: documentrules {
   sql_table_name: `iamtests-315719.mongodb_gep_airbyte.documentrules` ;;
 
