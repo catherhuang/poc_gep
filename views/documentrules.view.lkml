@@ -1,5 +1,5 @@
 view: documentrules {
-  sql_table_name: `iamtests-315719.mongodb_gep_airbyte.documentrules` ;;
+  sql_table_name: `iamtests-315719.mbettan.airbyte_after` ;;
 
   dimension: _ab_cdc_cursor {
     type: number
@@ -186,7 +186,16 @@ view: documentrules {
     type: string
     sql: ${TABLE}.tprmRsaId ;;
   }
+
+}
+
+
+view: documentrules_extend {
+  extends: [documentrules]
+  view_label: "Documentrules"
+
   measure: count {
+    view_label: "New Fields Test"
     type: count
   }
 }
