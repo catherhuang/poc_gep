@@ -190,8 +190,7 @@ view: documentrules {
 }
 
 
-view: documentrules_extend {
-  extends: [documentrules]
+view: +documentrules {
   view_label: "Documentrules"
 
   measure: count {

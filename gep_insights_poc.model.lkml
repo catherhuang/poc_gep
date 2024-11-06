@@ -5,7 +5,7 @@ include: "/views/*.view.lkml"
 
 # }
 
-explore: documentrules_extend {
+explore: documentrules {
   label: "Documentrules Demo"
 
 }
