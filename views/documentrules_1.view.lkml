@@ -1,3 +1,4 @@
+
 view: documentrules_1 {
   sql_table_name: `iamtests-315719.mongodb_gep_airbyte.documentrules_1` ;;
 
