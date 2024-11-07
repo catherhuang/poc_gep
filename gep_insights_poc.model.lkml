@@ -11,12 +11,6 @@ explore: documentrules_1 {
         ,documentrules_1.question000006es
         ,documentrules_1.pricesheets]
 
-  join: new_fields_demo {
-    view_label: "new_fields_demo"
-    sql: LEFT JOIN UNNEST(JSON_EXTRACT_ARRAY(${documentrules_1.teamMemberLeadList})) as new_fields_demo ;;
-    relationship: one_to_many
-  }
-
   join: suppliers {
     view_label: "Suppliers"
     sql: LEFT JOIN UNNEST(json_query_array(${documentrules_1.suppliers})) as suppliers ;;
@@ -54,6 +48,11 @@ explore: documentrules_1 {
   join: document_stakeholders {
     view_label: "Document Stakeholders"
     sql: LEFT JOIN UNNEST(JSON_EXTRACT_ARRAY(${documentrules_1.document_stakeholders})) as document_stakeholders  ;;
+    relationship: one_to_many
+  }
+  join: new_fields_demo {
+    view_label: "new_fields_demo"
+    sql: LEFT JOIN UNNEST(JSON_EXTRACT_ARRAY(${documentrules_1.teamMemberLeadList})) as new_fields_demo ;;
     relationship: one_to_many
   }
 }
