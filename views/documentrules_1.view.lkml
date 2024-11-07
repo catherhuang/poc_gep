@@ -75,6 +75,11 @@ view: documentrules_1 {
     type: string
     sql: ${TABLE}.createdOn ;;
   }
+  dimension_group: created {
+    type: time
+    sql: TIMESTAMP(${created_on}) ;;
+    timeframes: [raw,date,week,month,year]
+  }
   dimension: document_id {
     type: string
     sql: ${TABLE}.documentId ;;
@@ -137,7 +142,13 @@ view: documentrules_1 {
   }
   dimension: modified_on {
     type: string
+    hidden: yes
     sql: ${TABLE}.modifiedOn ;;
+  }
+  dimension_group: modified {
+    type: time
+    sql: timestamp(${modified_on}) ;;
+    timeframes: [raw, date, week, month, year]
   }
   dimension: negotiation_timelines {
     type: string
@@ -208,11 +219,11 @@ view: suppliers {
   dimension: created_by {
     type: string
     #sql: createdBy ;;
-    sql: JSON_VALUE(suppliers, '$.suppliers.createdBy')  ;;
+    sql: JSON_VALUE(suppliers.createdBY, '$.createdBy')  ;;
   }
   dimension: created_on {
     type: string
-    sql: JSON_VALUE(suppliers, '$.suppliers.createdOn') ;;
+    sql: JSON_VALUE(suppliers.createdOn, '$.createdOn') ;;
   }
   dimension: suppliers {
     type: string
@@ -221,43 +232,43 @@ view: suppliers {
   }
   dimension: guidelines_accepted_by {
     type: string
-    sql: JSON_VALUE(suppliers, '$.suppliers.guidelinesAcceptedBy') ;;
+    sql: JSON_VALUE(suppliers.guidelinesAcceptedBy, '$.guidelinesAcceptedBy') ;;
   }
   dimension: guidelines_accepted_on {
     type: string
-    sql: JSON_VALUE(suppliers, '$.suppliers.guidelinesAcceptedOn') ;;
+    sql: JSON_VALUE(suppliers.guidelinesAcceptedOn, '$.guidelinesAcceptedOn') ;;
   }
   dimension: is_award_acknowledged {
     type: yesno
-    sql: JSON_VALUE(suppliers, '$.suppliers.isAwardAcknowledged') ;;
+    sql: JSON_VALUE(suppliers.isAwardAcknowledge, '$.isAwardAcknowledged') ;;
   }
   dimension: is_commercial_acceptable {
     type: yesno
-    sql: JSON_VALUE(suppliers, '$.suppliers.isCommercialAcceptable') ;;
+    sql: JSON_VALUE(suppliers.isCommercialAcceptable, '$.isCommercialAcceptable') ;;
   }
   dimension: is_contract_terms_accepted {
     type: yesno
-    sql: JSON_VALUE(suppliers, '$.suppliers.isContractTermsAccepted') ;;
+    sql: JSON_VALUE(suppliers.isContractTermsAccepted, '$.isContractTermsAccepted') ;;
   }
   dimension: is_feedback_revised {
     type: yesno
-    sql: JSON_VALUE(suppliers, '$.suppliers.isFeedbackRevised') ;;
+    sql: JSON_VALUE(suppliers.isFeedbackRevised, '$.isFeedbackRevised') ;;
   }
   dimension: is_guidelines_accepted {
     type: yesno
-    sql: JSON_VALUE(suppliers, '$.suppliers.isGuidelinesAccepted') ;;
+    sql: JSON_VALUE(suppliers.isGuidelinesAccepted, '$.isGuidelinesAccepted') ;;
   }
   dimension: is_invitation_declined {
     type: yesno
-    sql: JSON_VALUE(suppliers, '$.suppliers.isInvitationDeclined') ;;
+    sql: JSON_VALUE(suppliers.isInvitationDeclined, '$.isInvitationDeclined') ;;
   }
   dimension: is_participation_confirmed {
     type: yesno
-    sql: JSON_VALUE(suppliers, '$.suppliers.isParticipationConfirmed') ;;
+    sql: JSON_VALUE(suppliers.isParticipationConfirmed, '$.isParticipationConfirmed') ;;
   }
   dimension: is_permissible_check_required {
     type: yesno
-    sql: JSON_VALUE(suppliers, '$.suppliers.isPermissibleCheckRequired') ;;
+    sql: JSON_VALUE(suppliers.isPermissibleCheckRequire, '$.isPermissibleCheckRequired') ;;
   }
   dimension: is_response_submitted {
     type: yesno
@@ -293,7 +304,7 @@ view: suppliers {
   }
   dimension: legal_company_name {
     type: string
-    sql: JSON_VALUE(suppliers, '$.suppliers.legalCompanyName') ;;
+    sql: JSON_VALUE(suppliers.legalCompanyName, '$.legalCompanyName') ;;
   }
   dimension: modified_by {
     type: string
@@ -313,15 +324,15 @@ view: suppliers {
   }
   dimension: shortlisted_for_feedback_on {
     type: string
-    sql: JSON_VALUE(suppliers, '$.suppliers.shortlistedForFeedbackOn') ;;
+    sql: JSON_VALUE(suppliers.shortlistedForFeedbackOn, '$.shortlistedForFeedbackOn') ;;
   }
   dimension: source_type {
     type: number
-    sql: JSON_VALUE(suppliers, '$.suppliers.sourceType') ;;
+    sql: JSON_VALUE(suppliers.sourceType, '$.sourceType') ;;
   }
   dimension: stakeholder_type {
     type: number
-    sql: JSON_VALUE(suppliers, '$.suppliers.stakeholderType') ;;
+    sql: JSON_VALUE(suppliers.stakeholderType, '$stakeholderType') ;;
   }
   dimension: status__name {
     type: string
@@ -348,6 +359,9 @@ view: suppliers {
   dimension: supplier_contacts {
     hidden: yes
     sql: JSON_VALUE(suppliers, '$.supplierContacts') ;;
+  }
+  measure: count {
+    type: count
   }
 }
 
@@ -376,6 +390,9 @@ view: audit_fields {
     sql: TO_JSON_STRING(auditFields.transactionScopeId) ;;
     group_item_label: "Transaction Scope ID"
   }
+  measure: count {
+    type: count
+  }
 }
 
 view: document_status {
@@ -393,6 +410,9 @@ view: document_status {
     type: string
     sql: TO_JSON_STRING(documentStatus.statusName) ;;
     group_item_label: "Status Name"
+  }
+  measure: count {
+    type: count
   }
 }
 
@@ -417,6 +437,10 @@ view: rps_scan_details {
     sql: TO_JSON_STRING(rpsScanDetails.scanSupplierCount) ;;
     group_item_label: "Scan Supplier Count"
   }
+  measure: count {
+    type: count
+  }
+
 }
 
 view: document_link_info {
@@ -435,6 +459,9 @@ view: document_link_info {
   dimension: source_id {
     type: string
     sql: TO_JSON_STRING(documentLinkInfo.sourceId) ;;
+  }
+  measure: count {
+    type: count
   }
 }
 
@@ -575,6 +602,9 @@ view: document_setting {
   dimension: training {
     type: yesno
     sql: TO_JSON_STRING(documentSettings.training) ;;
+  }
+  measure: count {
+    type: count
   }
 }
 
@@ -725,5 +755,8 @@ view: document_stakeholders {
     sql: ${TABLE}.x000007luationSubmittedPartnerCodes.technicalSubmittedPartnerCodes ;;
     group_label: "X000007luation Submitted Partner Codes"
     group_item_label: "Technical Submitted Partner Codes"
+  }
+  measure: count {
+    type: count
   }
 }

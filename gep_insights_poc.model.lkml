@@ -53,7 +53,7 @@ explore: documentrules_1 {
   }
   join: document_stakeholders {
     view_label: "Document Stakeholders"
-    sql: LEFT JOIN UNNEST(JSON_EXTRACT_ARRAY(${documentrules_1.document_stakeholders})) as document_timeline  ;;
+    sql: LEFT JOIN UNNEST(JSON_EXTRACT_ARRAY(${documentrules_1.document_stakeholders})) as document_stakeholders  ;;
     relationship: one_to_many
   }
 }
