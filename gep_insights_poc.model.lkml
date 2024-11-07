@@ -1,9 +1,8 @@
 connection: "gep_mongodb_connection"
 include: "/views/*.view.lkml"
 
-# explore: documentrules {
-
-# }
+# explore: documentrules_7 {
+#   fields: [ALL_FIELDS*, -documentrules_7.team_member_lead_list2]}
 
 explore: documentrules_1 {
   label: "Documentrules Demo"
@@ -51,7 +50,7 @@ explore: documentrules_1 {
     relationship: one_to_many
   }
   join: new_fields_demo {
-    view_label: "new_fields_demo"
+    view_label: "New Field Demo"
     sql: LEFT JOIN UNNEST(JSON_EXTRACT_ARRAY(${documentrules_1.teamMemberLeadList})) as new_fields_demo ;;
     relationship: one_to_many
   }
