@@ -204,6 +204,7 @@ view: documentrules_1 {
   }
   measure: count {
     type: count
+    drill_fields: [_id, created_by, created_date]
   }
 }
 
