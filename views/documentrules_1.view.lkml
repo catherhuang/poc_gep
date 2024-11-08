@@ -73,11 +73,11 @@ view: documentrules_1 {
   }
   dimension: created_on {
     type: string
-    sql: string(${TABLE}.createdOn) ;;
+    sql: TO_JSON_STRING(${TABLE}.createdOn) ;;
   }
   dimension_group: created {
     type: time
-    sql: TIMESTAMP(${created_on}) ;;
+    sql: date(${created_on}) ;;
     timeframes: [raw,date,week,month,year]
   }
   dimension: document_id {
@@ -142,12 +142,12 @@ view: documentrules_1 {
   }
   dimension: modified_on {
     type: string
-    hidden: no
-    sql: string(${TABLE}.modifiedOn) ;;
+    hidden: yes
+    sql: ${TABLE}.modifiedOn ;;
   }
   dimension_group: modified {
     type: time
-    sql: timestamp(string(${modified_on})) ;;
+    sql: date(STRING(${modified_on})) ;;
     timeframes: [raw, date, week, month, year]
   }
   dimension: negotiation_timelines {
@@ -622,6 +622,12 @@ view: document_timeline {
     type: string
     sql: JSON_VALUE(document_timeline, '$.createdOn') ;;
   }
+  dimension_group: created {
+    type: time
+    timeframes: [date, week, month, year]
+    sql: timestamp(${created_on}) ;;
+  }
+
   dimension: end_date_time {
     type: string
     sql: JSON_VALUE(document_timeline, '$.endDateTime') ;;
