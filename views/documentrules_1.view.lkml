@@ -202,8 +202,9 @@ view: documentrules_1 {
     type: string
     sql: ${TABLE}.tprmRsaId ;;
   }
-  dimension: teamMemberLeadList2 {
+  dimension: teamMemberLeadList2_hidden {
     type: string
+    hidden: yes
     sql: ${TABLE}.teamMemberLeadList2 ;;}
   measure: count {
     type: count
