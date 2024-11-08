@@ -770,6 +770,8 @@ view: document_stakeholders {
 }
 view: +documentrules_1 {
   dimension: teamMemberLeadList2_hidden {   type: string
+    hidden: yes
+
     sql: ${TABLE}.teamMemberLeadList2 ;; }
 
 
