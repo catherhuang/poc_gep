@@ -73,7 +73,7 @@ view: documentrules_1 {
   }
   dimension: created_on {
     type: string
-    sql: ${TABLE}.createdOn ;;
+    sql: string(${TABLE}.createdOn) ;;
   }
   dimension_group: created {
     type: time
@@ -142,12 +142,12 @@ view: documentrules_1 {
   }
   dimension: modified_on {
     type: string
-    hidden: yes
-    sql: ${TABLE}.modifiedOn ;;
+    hidden: no
+    sql: string(${TABLE}.modifiedOn) ;;
   }
   dimension_group: modified {
     type: time
-    sql: timestamp(${modified_on}) ;;
+    sql: timestamp(string(${modified_on})) ;;
     timeframes: [raw, date, week, month, year]
   }
   dimension: negotiation_timelines {

@@ -8,7 +8,9 @@ explore: documentrules_1 {
   label: "Documentrules Demo"
   cancel_grouping_fields: [documentrules_1.guidelines
         ,documentrules_1.question000006es
-        ,documentrules_1.pricesheets]
+        ,documentrules_1.pricesheets
+        , documentrules_1.created_on
+        , documentrules_1.modified_on]
 
   join: suppliers {
     view_label: "Suppliers"
