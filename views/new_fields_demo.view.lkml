@@ -58,8 +58,8 @@ view: new_fields_demo {
 
 
 view: +documentrules_1 {
-  dimension: teamMemberLeadList2 {   type: string
-    sql: ${TABLE}.teamMemberLeadList2 ;; }
+  dimension: teamMemberLeadList {   type: string
+    sql: ${TABLE}.teamMemberLeadList ;; }
   
   
   }
