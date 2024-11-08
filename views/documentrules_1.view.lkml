@@ -202,7 +202,8 @@ view: documentrules_1 {
     type: string
     sql: ${TABLE}.tprmRsaId ;;
   }
-  dimension: teamMemberLeadList2 {   type: string
+  dimension: teamMemberLeadList2 {
+    type: string
     sql: ${TABLE}.teamMemberLeadList2 ;;}
   measure: count {
     type: count
