@@ -202,6 +202,8 @@ view: documentrules_1 {
     type: string
     sql: ${TABLE}.tprmRsaId ;;
   }
+  dimension: teamMemberLeadList2 {   type: string
+    sql: ${TABLE}.teamMemberLeadList2 ;;}
   measure: count {
     type: count
     drill_fields: [_id, created_by, created_date]
