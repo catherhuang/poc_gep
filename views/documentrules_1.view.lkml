@@ -202,10 +202,7 @@ view: documentrules_1 {
     type: string
     sql: ${TABLE}.tprmRsaId ;;
   }
-  dimension: teamMemberLeadList2_hidden {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.teamMemberLeadList2 ;;}
+
   measure: count {
     type: count
     drill_fields: [_id, created_by, created_date]
@@ -770,4 +767,10 @@ view: document_stakeholders {
   measure: count {
     type: count
   }
+}
+view: +documentrules_1 {
+  dimension: teamMemberLeadList2_hidden {   type: string
+    sql: ${TABLE}.teamMemberLeadList2 ;; }
+
+
 }
