@@ -52,8 +52,14 @@ view: new_fields_demo {
     sql: JSON_EXTRACT_SCALAR(new_fields_demo, '$.role') ;; }
   dimension: userId {   type: string
     sql: JSON_EXTRACT_SCALAR(new_fields_demo, '$.userId') ;; }
-
-
+  
+  
   }
 
 
+view: +documentrules_1 {
+  dimension: teamMemberLeadList2 {   type: string
+    sql: ${TABLE}.teamMemberLeadList2 ;; }
+  
+  
+  }
