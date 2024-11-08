@@ -51,9 +51,9 @@ explore: documentrules_1 {
     sql: LEFT JOIN UNNEST(JSON_EXTRACT_ARRAY(${documentrules_1.document_stakeholders})) as document_stakeholders  ;;
     relationship: one_to_many
   }
-  join: new_fields_demo {
-    view_label: "New Field Demo"
-    sql: LEFT JOIN UNNEST(JSON_EXTRACT_ARRAY(${documentrules_1.teamMemberLeadList2_hidden})) as new_fields_demo ;;
-    relationship: one_to_many
-  }
+  # join: new_fields_demo {
+  #   view_label: "New Field Demo"
+  #   sql: LEFT JOIN UNNEST(JSON_EXTRACT_ARRAY(${documentrules_1.teamMemberLeadList2_hidden})) as new_fields_demo ;;
+  #   relationship: one_to_many
+  # }
 }
